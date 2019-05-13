@@ -11,7 +11,7 @@ public class ListenerMB : MonoBehaviour
     private float timer = 0;
 
     //Data class
-    ListenerData data = new ListenerData(4);
+    private ListenerData data = new ListenerData(4);
 
     //Player ref --- is set in inspector
     public GameObject player;
@@ -33,8 +33,8 @@ public class ListenerMB : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.P))
         {
-            Debug.Log("Total distance traveled: "+data.GetTotalTraveledDistance);
-            Debug.Log("distance traveled: " + data.GetDistanceTraveled);
+            Debug.Log("Total distance traveled: " + Data.GetTotalTraveledDistance);
+            Debug.Log("distance traveled: " + Data.GetDistanceTraveled);
         }
     }
 
@@ -58,8 +58,10 @@ public class ListenerMB : MonoBehaviour
     /// </summary>
     private void GetData()
     {
-        data.AddPlayerPosition(player.transform.position);
-        
+        Data.AddPlayerPosition(player.transform.position);
+
     }
 
+
+    public ListenerData Data { get => data; }
 }

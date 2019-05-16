@@ -2,15 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public enum Goal
-{
-    Go,
-    Gather
-}
 
-public class Task : ITask
-{
 
+public class GatherTask : ITask
+{
     public Goal taskGoal;
 
     int currentCount;
@@ -20,9 +15,9 @@ public class Task : ITask
 
     private string taskDescription;
 
-    public Task(Goal _taskGoal, int _neededAmount, string goalname)
+    public GatherTask(int _neededAmount, string goalname)
     {
-        taskGoal = _taskGoal;
+        taskGoal = Goal.Gather;
         countNeeded = _neededAmount;
         materialString = goalname;
     }
@@ -32,21 +27,16 @@ public class Task : ITask
         return currentCount >= countNeeded;
     }
 
-    public string GetTaskDescription()
+    public string TaskDescription()
     {
         string _ret = "";
-        if (taskGoal == Goal.Go)
-        {
-            _ret += "Go To ";
-            //location?
-        }
-        else if (taskGoal == Goal.Gather)
+        if (taskGoal == Goal.Gather)
         {
             _ret += "Gather ";
             _ret += countNeeded;
             _ret += " " + materialString;
             _ret += " (" + currentCount + ")";
         }
-        return  _ret;
+        return _ret;
     }
 }

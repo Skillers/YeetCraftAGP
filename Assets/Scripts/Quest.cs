@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Quest
 {
-    private List<Task> tasks = new List<Task>();
+    private List<ITask> tasks = new List<ITask>();
 
     int taskCount;
 
-    public Quest(List<Task> _tasks)
+    public Quest(List<ITask> _tasks)
     {
         tasks = _tasks;
         taskCount = 0;
@@ -32,7 +32,7 @@ public class Quest
     {
         for (int i = 0; i < tasks.Count; i++)
         {
-            Debug.Log(tasks[i].GetTaskDescription());
+            Debug.Log(tasks[i].TaskDescription());
         }
     }
 }

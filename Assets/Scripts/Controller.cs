@@ -12,12 +12,12 @@ public class Controller : MonoBehaviour
 
     Quest currentQuest;
 
-    List<Task> tasks = new List<Task>();
+    List<ITask> tasks = new List<ITask>();
     // Start is called before the first frame update
     void Start()
     {
-        tasks.Add(new Task(Goal.Gather, 5, "Niks"));
-        tasks.Add(new Task(Goal.Gather, 29, "Alles"));
+        tasks.Add(new GatherTask(5, "Joinkers"));
+        tasks.Add(new GatherTask(29, "Yeet"));
         currentQuest = new Quest(tasks);
         currentQuest.DebugQuest();
     }

@@ -6,22 +6,25 @@ public class Quest
 {
     private List<ITask> tasks = new List<ITask>();
 
-    int taskCount;
+    int taskCounter;
 
     public Quest(List<ITask> _tasks)
     {
         tasks = _tasks;
-        taskCount = 0;
+
+        //Keep track on which task is currently active
+        taskCounter = 0;
     }
 
 
    public void CheckTask()
     {
-        if (tasks[taskCount].Completed())
+        if (tasks[taskCounter].Completed())
         {
-            taskCount++;
+            Debug.Log("Task completed");
+            taskCounter++;
         }
-        if (taskCount >= tasks.Count)
+        if (taskCounter >= tasks.Count)
         {
             Debug.Log("Quest completed");
         }

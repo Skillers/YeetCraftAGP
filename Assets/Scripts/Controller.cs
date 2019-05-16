@@ -9,10 +9,17 @@ public class Controller : MonoBehaviour
 
     private float yaw = 0.0f;
     private float pitch = 0.0f;
+
+    Quest currentQuest;
+
+    List<Task> tasks = new List<Task>();
     // Start is called before the first frame update
     void Start()
     {
-        
+        tasks.Add(new Task(Goal.Gather, 5, "Niks"));
+        tasks.Add(new Task(Goal.Gather, 29, "Alles"));
+        currentQuest = new Quest(tasks);
+        currentQuest.DebugQuest();
     }
 
     // Update is called once per frame

@@ -12,7 +12,7 @@ public class Block {
 	Chunk owner;
 	GameObject parent;
 	Vector3 position;
-
+    
 	Vector2[,] blockUVs = { 
 		/*GRASS TOP*/		{new Vector2( 0.125f, 0.375f ), new Vector2( 0.1875f, 0.375f),
 								new Vector2( 0.125f, 0.4375f ),new Vector2( 0.1875f, 0.4375f )},

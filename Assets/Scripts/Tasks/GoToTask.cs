@@ -29,7 +29,7 @@ public class GoToTask : ITask
     {
         Debug.Log("New task started: Go to: X" + Location.x + ", Y" + Location.y + " | Current Location: " + TaskProgression() + " |");
         owningQuest = _owningQuest;
-        WorldData.changedPlayerPositionEvent += UpdateTask;
+        WorldData.changedLatestPlayerPositionEvent += UpdateTask;
     }
 
     public void UpdateTask(Vector3 Postion)
@@ -58,7 +58,7 @@ public class GoToTask : ITask
 
     public void UpdateQuest()
     {
-        WorldData.changedPlayerPositionEvent += UpdateTask;
+        WorldData.changedLatestPlayerPositionEvent += UpdateTask;
         owningQuest.NextTask();
     }
 

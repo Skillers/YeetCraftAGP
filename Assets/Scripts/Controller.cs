@@ -29,6 +29,12 @@ public class Controller : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            wantedMode = CursorLockMode.Confined;
+            Cursor.lockState = wantedMode;
+            Cursor.visible = (CursorLockMode.Locked != wantedMode);
+        }
         if (Input.GetKeyDown("space"))
         {
             this.GetComponent<Rigidbody>().velocity = Vector3.up * 5;

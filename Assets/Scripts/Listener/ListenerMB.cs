@@ -5,37 +5,28 @@ using UnityEngine;
 public class ListenerMB : MonoBehaviour
 {
     //The interval (in seconds) in which the tread will take the values
-    private readonly float DATA_COLLECTION_INTERVAL = 5;
+    private readonly float DATA_COLLECTION_INTERVAL = 6;
 
     //Timer value
     private float timer = 0;
 
-    //Data class
-    private ListenerData data = new ListenerData(4);
 
-    //Player ref --- is set in inspector
+    //Player reference. Is set in inspector
     public GameObject player;
-
-    // Start is called before the first frame update
+ 
     void Start()
     {
         timer = 0;
     }
 
-    // Update is called once per frame
     void Update()
     {
+
         if (Interval())
         {
-            GetData();
-            Debug.Log("Joinkers");
+            WorldData.changedPlayerPosition(player.transform.position);
         }
 
-        if (Input.GetKeyDown(KeyCode.P))
-        {
-            Debug.Log("Total distance traveled: " + Data.GetTotalTraveledDistance);
-            Debug.Log("distance traveled: " + Data.GetDistanceTraveled);
-        }
     }
 
     /// <summary>
@@ -52,16 +43,4 @@ public class ListenerMB : MonoBehaviour
         }
         return false;
     }
-
-    /// <summary>
-    /// Get/update all data from the player.
-    /// </summary>
-    private void GetData()
-    {
-        Data.AddPlayerPosition(player.transform.position);
-
-    }
-
-
-    public ListenerData Data { get => data; }
 }

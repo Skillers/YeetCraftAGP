@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class World : MonoBehaviour {
 
+    
     public GameObject player;
 	public Material textureAtlas;
 	public static int columnHeight = 16;

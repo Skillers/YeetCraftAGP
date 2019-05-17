@@ -6,38 +6,33 @@ public class Quest
 {
     private List<ITask> tasks = new List<ITask>();
 
+    private string questTitle;
     int taskCounter;
     bool completed;
 
-    public Quest(List<ITask> _tasks)
+    public Quest(List<ITask> _tasks, string _questTilte)
     {
+        questTitle = _questTilte;
         tasks = _tasks;
         completed = false;
-       
         taskCounter = 0;
+
+        Debug.Log("Quest started: " + questTitle + "| 0/" + tasks.Count+" Steps |");
+        tasks[taskCounter].StartTask(this);
     }
 
-
-   public void CheckProgression()
+    public void NextTask()
     {
-        if (tasks[taskCounter].CheckTaskStatus())
+        if (taskCounter < tasks.Count - 1)
         {
-            Debug.Log("Task completed");
             taskCounter++;
+            Debug.Log("Quest progressed: " + questTitle + "| " + taskCounter + "/" + tasks.Count + " Steps |");
+            tasks[taskCounter].StartTask(this);
         }
-        if (taskCounter >= tasks.Count)
+        else
         {
+            Debug.Log("Quest Complete: " + questTitle + "| " + tasks.Count + "/" + tasks.Count + " Steps |");
             completed = true;
-            Debug.Log("Quest completed");
-        }
-    }
-
-
-    public void DebugQuest()
-    {
-        for (int i = 0; i < tasks.Count; i++)
-        {
-            Debug.Log(tasks[i].TaskDescription());
         }
     }
 }

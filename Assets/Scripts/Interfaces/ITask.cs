@@ -6,7 +6,12 @@
 
 public interface ITask
 {
-    bool CheckTaskStatus();
+    //Subscribe the task to a event
+    void StartTask(Quest _owningQuest);
+    //Tells the quest that the task is done.
+    void UpdateQuest();
+    //status text only
     string TaskProgression();
+    //main text for quest
     string TaskDescription();
 }

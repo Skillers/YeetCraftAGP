@@ -18,12 +18,16 @@ public class Controller : MonoBehaviour
     {
         Cursor.lockState = wantedMode;
         Cursor.visible = (CursorLockMode.Locked != wantedMode);
+
+        //Creates a test quest.
         List<ITask> tasks = new List<ITask>();
         tasks.Add(new GoToTask(Vector3.zero));
         tasks.Add(new GatherTask(10 , Block.BlockType.GRASS));
         tasks.Add(new GatherTask(10, Block.BlockType.DIRT));
         tasks.Add(new GatherTask(10, Block.BlockType.STONE));
-        currentQuest = new Quest(tasks, "Gatherings of Basics");
+        QuestLog.questLog.Add(currentQuest = new Quest(tasks, "Gatherings of Basics"));
+
+
     }
 
     // Update is called once per frame
@@ -35,6 +39,7 @@ public class Controller : MonoBehaviour
             Cursor.lockState = wantedMode;
             Cursor.visible = (CursorLockMode.Locked != wantedMode);
         }
+
         if (Input.GetKeyDown("space"))
         {
             this.GetComponent<Rigidbody>().velocity = Vector3.up * 5;
@@ -56,8 +61,11 @@ public class Controller : MonoBehaviour
             transform.position -= transform.forward * Time.deltaTime * 3;
         }
 
-        yaw += speedH * Input.GetAxis("Mouse X");
-        pitch -= speedV * Input.GetAxis("Mouse Y");
+        if (wantedMode == CursorLockMode.Locked)
+        {
+            yaw += speedH * Input.GetAxis("Mouse X");
+            pitch -= speedV * Input.GetAxis("Mouse Y");
+        }
         transform.eulerAngles = new Vector3(0.0f, yaw, 0.0f);
         transform.GetChild(0).transform.eulerAngles = new Vector3(pitch, transform.eulerAngles.y, transform.eulerAngles.z);
     }

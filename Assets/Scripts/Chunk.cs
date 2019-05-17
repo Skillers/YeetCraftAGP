@@ -101,6 +101,14 @@ public class Chunk {
         }
     }
 
+    public void Redraw()
+    {
+        GameObject.DestroyImmediate(chunk.GetComponent<MeshFilter>());
+        GameObject.DestroyImmediate(chunk.GetComponent<MeshRenderer>());
+        GameObject.DestroyImmediate(chunk.GetComponent<Collider>());
+        DrawChunk();
+    }
+
     public IEnumerator DrawChunkT()
 	{
         for (int y = 0; y < World.chunkSize; y++)

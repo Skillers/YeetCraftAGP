@@ -9,10 +9,13 @@ public class Controller : MonoBehaviour
 
     private float yaw = 0.0f;
     private float pitch = 0.0f;
+
+    public CursorLockMode wantedMode;
     // Start is called before the first frame update
     void Start()
     {
-        
+        Cursor.lockState = wantedMode;
+        Cursor.visible = (CursorLockMode.Locked != wantedMode);
     }
 
     // Update is called once per frame

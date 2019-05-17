@@ -14,11 +14,7 @@ public class Block {
 	GameObject parent;
 	Vector3 position;
 
-    public BlockType health;
-    int currentHealth;
-    int[] blockHealthMax = { 3, 3, 4, -1, 4, 4, 0, 0, 0, 0, 0, 0 };
-
-    Vector2[,] blockUVs = { 
+	Vector2[,] blockUVs = { 
 		/*GRASS TOP*/		{new Vector2( 0.125f, 0.375f ), new Vector2( 0.1875f, 0.375f),
 								new Vector2( 0.125f, 0.4375f ),new Vector2( 0.1875f, 0.4375f )},
 		/*GRASS SIDE*/		{new Vector2( 0.1875f, 0.9375f ), new Vector2( 0.25f, 0.9375f),
@@ -282,3 +278,10 @@ public class Block {
 			CreateQuad(Cubeside.RIGHT);
 	}
 }
+
+
+    public BlockType health;
+    int currentHealth;
+    int[] blockHealthMax = { 3, 3, 4, -1, 4, 4, 0, 0, 0, 0, 0, 0 };
+
+    Vector2[,] blockUVs = { 

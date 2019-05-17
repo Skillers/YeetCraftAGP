@@ -21,7 +21,7 @@ public class Controller : MonoBehaviour
 
         //Creates a test quest.
         List<ITask> tasks = new List<ITask>();
-        tasks.Add(new GoToTask(Vector3.zero));
+        tasks.Add(new GoToTask(new Vector3(5,0,5)));
         tasks.Add(new GatherTask(10 , Block.BlockType.GRASS));
         tasks.Add(new GatherTask(10, Block.BlockType.DIRT));
         tasks.Add(new GatherTask(10, Block.BlockType.STONE));

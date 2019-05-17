@@ -58,7 +58,7 @@ public class GoToTask : ITask
 
     public void UpdateQuest()
     {
-        WorldData.changedLatestPlayerPositionEvent += UpdateTask;
+        WorldData.changedLatestPlayerPositionEvent -= UpdateTask;
         owningQuest.NextTask();
     }
 

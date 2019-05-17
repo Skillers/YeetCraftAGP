@@ -28,6 +28,9 @@ public class WorldData : MonoBehaviour
     public delegate void ChangedLatestPlayerPositionEvent(Vector3 position);
     public static event ChangedLatestPlayerPositionEvent changedLatestPlayerPositionEvent;
 
+    public delegate void ChangedTaskCompletedEvent();
+    public static event ChangedTaskCompletedEvent changedTaskCompletedEvent;
+
     //Event for block counter
     public static void changeMineCount()
     {
@@ -75,6 +78,17 @@ public class WorldData : MonoBehaviour
     public static void changedLatestPlayerPosition(Vector3 _position)
     {
         lastPlayerPosition = _position;
-        changedLatestPlayerPositionEvent(_position);
+        if (changedLatestPlayerPositionEvent != null)
+        {
+            changedLatestPlayerPositionEvent(_position);
+        }
+    }
+
+    public static void changedTaskCompleted()
+    {
+        if (changedTaskCompletedEvent != null)
+        {
+            changedTaskCompletedEvent();
+        }
     }
 }

@@ -22,7 +22,7 @@ public class GatherTask : ITask
         materialString = goalname;
     }
 
-    public bool Completed()
+    public bool CheckTaskStatus()
     {
         return currentCount >= countNeeded;
     }
@@ -30,13 +30,16 @@ public class GatherTask : ITask
     public string TaskDescription()
     {
         string _ret = "";
-        if (taskGoal == Goal.Gather)
-        {
-            _ret += "Gather ";
-            _ret += countNeeded;
-            _ret += " " + materialString;
-            _ret += " (" + currentCount + ")";
-        }
+        _ret += "Gather ";
+        _ret += TaskProgression();
+        _ret += " " + materialString;
         return _ret;
     }
+
+    public string TaskProgression()
+    {
+        string _ret = currentCount + "/" + countNeeded;
+        return _ret;
+    }
+
 }

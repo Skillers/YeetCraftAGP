@@ -6,6 +6,7 @@
 
 public interface ITask
 {
-    bool Completed();
+    bool CheckTaskStatus();
+    string TaskProgression();
     string TaskDescription();
 }

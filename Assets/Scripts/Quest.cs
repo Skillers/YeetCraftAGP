@@ -7,25 +7,27 @@ public class Quest
     private List<ITask> tasks = new List<ITask>();
 
     int taskCounter;
+    bool completed;
 
     public Quest(List<ITask> _tasks)
     {
         tasks = _tasks;
-
-        //Keep track on which task is currently active
+        completed = false;
+       
         taskCounter = 0;
     }
 
 
-   public void CheckTask()
+   public void CheckProgression()
     {
-        if (tasks[taskCounter].Completed())
+        if (tasks[taskCounter].CheckTaskStatus())
         {
             Debug.Log("Task completed");
             taskCounter++;
         }
         if (taskCounter >= tasks.Count)
         {
+            completed = true;
             Debug.Log("Quest completed");
         }
     }

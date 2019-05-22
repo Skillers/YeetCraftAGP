@@ -11,9 +11,9 @@ public class Block
 
     BlockType bType;
     public bool isSolid;
-    Chunk owner;
+    public Chunk owner;
     GameObject parent;
-    Vector3 position;
+    public Vector3 position;
 
     public BlockType health;
     int currentHealth;
@@ -75,6 +75,15 @@ public class Block
 
         health = BlockType.NOCRACK;
         currentHealth = blockHealthMax[(int)bType];
+    }
+
+    public bool BuildBlock(BlockType b)
+    {
+
+        SetType(b);
+        owner.Redraw();
+
+        return true;
     }
 
     public bool HitBlock()

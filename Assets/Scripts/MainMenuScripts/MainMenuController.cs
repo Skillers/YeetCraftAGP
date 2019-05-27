@@ -34,6 +34,7 @@ public class MainMenuController : MonoBehaviour
         MainMenuObject.SetActive(false);
         QuestListsMenu.SetActive(false);
         QuestEditorMenu.SetActive(true);
+
         editorBehaviour.SetValues(_editedQuest);
     }
 

@@ -39,6 +39,11 @@ public class Quest
 
         WorldData.changedTaskCompleted();
     }
+    
+    public string GetTitle()
+    {
+        return questTitle;
+    }
 
     public string GetDescription()
     {

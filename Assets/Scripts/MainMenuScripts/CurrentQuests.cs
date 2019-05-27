@@ -47,7 +47,6 @@ public class CurrentQuests : MonoBehaviour
         _questTasks.Add(new GoToTask(new Vector3(0, 0, 0)));
 
         questHolder.quests.Add(new Quest(_questTasks, ("Quest " + (questHolder.quests.Count + 1).ToString())));
-
         UpdateList();
     }
 }

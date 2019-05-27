@@ -37,7 +37,7 @@ public class QuestEditorBehaviour : MonoBehaviour
 
     public Quest currentEditableQuest; //used to reffer back to orgin quest
     private TaskHolder currentTaskHolder;
-    
+
     public void SetValues(Quest _newQuest)
     {
         //Empty all create objects
@@ -50,7 +50,7 @@ public class QuestEditorBehaviour : MonoBehaviour
 
         currentTaskTitleText.text = "";
         CurrentSelectedIndexText.text = currentTaskIndex.ToString();
-        questMainText.text = currentEditableQuest.GetDescription();
+        questMainText.text = currentEditableQuest.GetTitle();
 
         //Add all tasks
         for (int i = 0; i < currentEditableQuest.GetTasks.Count; i++)

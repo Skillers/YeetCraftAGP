@@ -46,4 +46,9 @@ public class Quest
     {
         return questTitle + " (" + (taskCounter) + "/" + tasks.Count + ")";
     }
+
+    public List<ITask> GetTasks()
+    {
+        return tasks;
+    }
 }

@@ -32,4 +32,5 @@ public class QuestHolder : MonoBehaviour
         quests.Add(new Quest(questTasks3, "Yeetcraft"));
     }
 
+  
 }

@@ -37,8 +37,7 @@ public class QuestEditorBehaviour : MonoBehaviour
 
     public Quest currentEditableQuest; //used to reffer back to orgin quest
     private TaskHolder currentTaskHolder;
-
-
+    
     public void SetValues(Quest _newQuest)
     {
         //Empty all create objects
@@ -214,6 +213,15 @@ public class QuestEditorBehaviour : MonoBehaviour
 
     public void DoneWithQuest()
     {
+        MainMenuController.Instance.QuestCreationMenuOpen();
+    }
+
+    public void DeleteQuest()
+    {
+        //remove quest
+        questHolder.quests.Remove(currentEditableQuest);
+
+        //go back to quest menu
         MainMenuController.Instance.QuestCreationMenuOpen();
     }
 

@@ -11,13 +11,16 @@ public class CurrentQuests : MonoBehaviour
     public QuestHolder questHolder;
 
     public GameObject questPrefab;
-    
+
     int listOffset = -11;
-    
+
     private void OnEnable()
     {
-        //Generate new list etc
+        UpdateList();
+    }
 
+    private void UpdateList()
+    {
         //Get all child objects on parent
         foreach (Transform child in questParentObject.transform)
         {
@@ -35,10 +38,16 @@ public class CurrentQuests : MonoBehaviour
             _newQuest.transform.localPosition = _createPos;
 
             _newQuest.GetComponent<QuestDescription>().SetValues(questHolder.quests[i]);
-            
         }
-        Debug.Log("Update Quest log");
-        //generate new quest things
+    }
 
+    public void AddQuest()
+    {
+        List<ITask> _questTasks = new List<ITask>();
+        _questTasks.Add(new GoToTask(new Vector3(0, 0, 0)));
+
+        questHolder.quests.Add(new Quest(_questTasks, ("Quest " + (questHolder.quests.Count + 1).ToString())));
+
+        UpdateList();
     }
 }

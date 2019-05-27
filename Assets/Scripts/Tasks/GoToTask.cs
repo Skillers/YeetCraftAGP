@@ -8,7 +8,7 @@ public class GoToTask : ITask
     public Goal taskGoal;
 
     //Height doesnt matter for being near a point.
-    Vector2 Location;
+    Vector3 Location;
     int acuracyToLocation;
 
     bool completed;
@@ -18,7 +18,7 @@ public class GoToTask : ITask
 
         taskGoal = Goal.Go;
 
-        Location = new Vector2(ToGoLocation.x, ToGoLocation.z);
+        Location = ToGoLocation; // new Vector3(ToGoLocation.x, ToGoLocation.z);
 
         completed = false;
 
@@ -27,7 +27,7 @@ public class GoToTask : ITask
 
     public void StartTask(Quest _owningQuest)
     {
-        Debug.Log("New task started: Go to: X" + Location.x + ", Y" + Location.y + " | Current Location: " + TaskProgression() + " |");
+       // Debug.Log("New task started: Go to: X" + Location.x + ", Y" + Location.y + " | Current Location: " + TaskProgression() + " |");
         owningQuest = _owningQuest;
         WorldData.changedLatestPlayerPositionEvent += UpdateTask;
     }
@@ -75,5 +75,13 @@ public class GoToTask : ITask
         return _ret;
     }
 
+    public int TaskID()
+    {
+        return 1;
+    }
 
+    public Vector3 GoalPos()
+    {
+        return Location;
+    }
 }

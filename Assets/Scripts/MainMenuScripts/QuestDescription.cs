@@ -21,7 +21,6 @@ public class QuestDescription : MonoBehaviour
         currentQuest = _newQuest;
 
         questDescriptionText.text = currentQuest.GetDescription();
-        Debug.Log("Set");
     }
 
     public void EditQuest()

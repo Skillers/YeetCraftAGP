@@ -11,16 +11,9 @@ public class CurrentQuests : MonoBehaviour
     public QuestHolder questHolder;
 
     public GameObject questPrefab;
-
-
+    
     int listOffset = -11;
-
-    private void Start()
-    {
-
-       
-    }
-
+    
     private void OnEnable()
     {
         //Generate new list etc
@@ -44,7 +37,7 @@ public class CurrentQuests : MonoBehaviour
             _newQuest.GetComponent<QuestDescription>().SetValues(questHolder.quests[i]);
             
         }
-
+        Debug.Log("Update Quest log");
         //generate new quest things
 
     }

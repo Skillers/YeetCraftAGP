@@ -13,7 +13,7 @@ public class QuestEditorBehaviour : MonoBehaviour
     public GameObject taskPrefab;
 
     [Header("Refs:")]
-    public Text questMainText;
+    public InputField questMainText;
     public Text CurrentSelectedIndexText;
     public GameObject taskListParent;
     public Dropdown taskTypeDropDownMenu;
@@ -51,7 +51,7 @@ public class QuestEditorBehaviour : MonoBehaviour
 
         currentTaskTitleText.text = "";
         CurrentSelectedIndexText.text = currentTaskIndex.ToString();
-        questMainText.text = "Edit: " + currentEditableQuest.GetDescription();
+        questMainText.text = currentEditableQuest.GetDescription();
 
         //Add all tasks
         for (int i = 0; i < currentEditableQuest.GetTasks.Count; i++)
@@ -144,6 +144,27 @@ public class QuestEditorBehaviour : MonoBehaviour
         goToEditPanel.SetActive(false);
         gatherEditPanel.SetActive(false);
         buildEditPanel.SetActive(false);
+
+        switch (_dropDownPanel.value)
+        {
+            case 0: // go to
+                goToEditPanel.SetActive(true);
+                break;
+            case 1: // gather
+                gatherEditPanel.SetActive(true);
+                break;
+            case 2: // build
+                buildEditPanel.SetActive(true);
+                break;
+            default:
+                break;
+        }
+    }
+
+    public void QuestNameChanged()
+    {
+        //string newName = questMainText.text;
+        currentEditableQuest.EditTitle(questMainText.text);
     }
 
     /// <summary>

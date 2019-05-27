@@ -53,6 +53,11 @@ public class Quest
         }
     }
 
+    public void EditTitle(string _newTitle)
+    {
+        questTitle = _newTitle;
+    }
+
     public void SetTaskOn(int _index, ITask _task)
     {
         tasks[_index] = _task;

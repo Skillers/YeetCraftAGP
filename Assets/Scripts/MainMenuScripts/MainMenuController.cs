@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class MainMenuController : MonoBehaviour
 {
@@ -51,5 +52,14 @@ public class MainMenuController : MonoBehaviour
         MainMenuObject.SetActive(true);
         QuestListsMenu.SetActive(false);
         QuestEditorMenu.SetActive(false);
+    }
+
+    public void StartGame()
+    {
+        MainMenuObject.SetActive(false);
+        QuestListsMenu.SetActive(false);
+        QuestEditorMenu.SetActive(false);
+        //Go to main scene game
+        SceneManager.LoadScene(1);
     }
 }

@@ -20,6 +20,11 @@ public class Quest
         questID = QuestLog.GetNextQuestID();
 
         //Debug.Log("Quest started: " + questTitle + "| 0/" + tasks.Count + " Steps |");
+      
+    }
+
+    public void StartQuest()
+    {
         tasks[taskCounter].StartTask(this);
     }
 
@@ -63,6 +68,11 @@ public class Quest
         questTitle = _newTitle;
     }
 
+    /// <summary>
+    /// Change the tasks
+    /// </summary>
+    /// <param name="_index"></param>
+    /// <param name="_task"></param>
     public void SetTaskOn(int _index, ITask _task)
     {
         tasks[_index] = _task;

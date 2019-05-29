@@ -16,10 +16,23 @@ public class QuestHud : MonoBehaviour
 
     private void UpdateQuestList()
     {
+        for (int i = 0; i < QuestLog.questLog.Count; i++)
+        {
+            GameObject questHudItem = QuestHudContent.transform.Find(QuestLog.questLog[i].questID.ToString()).gameObject;
+            if (QuestLog.questLog[i].completed)
+            {
+                questHudItem.transform.GetChild(0).GetComponent<Text>().text = QuestLog.questLog[i].questTitle + " | DONE |";
+            }
+            else
+            {
+                questHudItem.transform.GetChild(0).GetComponent<Text>().text = QuestLog.questLog[i].GetDescription();
+               // questHudItem.transform.position
+            }
+        }
         foreach (Quest item in QuestLog.questLog)
         {
             GameObject questHudItem = QuestHudContent.transform.Find(item.questID.ToString()).gameObject;
-            if (item.completed)
+           if (item.completed)
             {
                 questHudItem.transform.GetChild(0).GetComponent<Text>().text = item.questTitle + " | DONE |";
             }
@@ -27,8 +40,8 @@ public class QuestHud : MonoBehaviour
             {
                 questHudItem.transform.GetChild(0).GetComponent<Text>().text = item.GetDescription();
 
-            }
-        }
+           }
+       }
     }
 
     // Update is called once per frame
@@ -37,12 +50,21 @@ public class QuestHud : MonoBehaviour
 
         if(QuestLog.questLog.Count > QuestHudContent.transform.childCount)
         {
-            foreach (Quest item in QuestLog.questLog)
+            for (int i = 0; i < QuestLog.questLog.Count; i++)
             {
                 Button tempButton = Instantiate(buttonPrefab, QuestHudContent.transform) as Button;
-                tempButton.name = item.questID.ToString();
-                tempButton.transform.GetChild(0).GetComponent<Text>().text = item.GetDescription();
+                tempButton.name = QuestLog.questLog[i].questID.ToString();
+                tempButton.transform.GetChild(0).GetComponent<Text>().text = QuestLog.questLog[i].GetDescription();
+                //Set button position
+                tempButton.transform.localPosition = new Vector3(107, (-100)+(-20 * i), 0);
             }
+            //foreach (Quest item in QuestLog.questLog)
+            //{
+            //    Button tempButton = Instantiate(buttonPrefab, QuestHudContent.transform) as Button;
+            //    tempButton.name = item.questID.ToString();
+            //    tempButton.transform.GetChild(0).GetComponent<Text>().text = item.GetDescription();
+            //    //Set button position
+            //}
         }     
         
     }

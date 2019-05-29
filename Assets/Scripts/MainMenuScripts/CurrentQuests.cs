@@ -49,4 +49,11 @@ public class CurrentQuests : MonoBehaviour
         questHolder.quests.Add(new Quest(_questTasks, ("Quest " + (questHolder.quests.Count + 1).ToString())));
         UpdateList();
     }
+
+    public void AddRandomQuest()
+    {
+
+
+        UpdateList();
+    }
 }

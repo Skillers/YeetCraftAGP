@@ -22,12 +22,23 @@ public class QuestHud : MonoBehaviour
 
     private void UpdateTasksQuestList()
     {
-
-    }
-
-    private void UpdateQuestCList()
-    {
-            foreach (Quest item in QuestLog.questCompletedLog)
+        for (int i = 0; i < QuestLog.questLog.Count; i++)
+        {
+            GameObject questHudItem = QuestHudContent.transform.Find(QuestLog.questLog[i].questID.ToString()).gameObject;
+            if (QuestLog.questLog[i].completed)
+            {
+                questHudItem.transform.GetChild(0).GetComponent<Text>().text = QuestLog.questLog[i].questTitle + " | DONE |";
+            }
+            else
+            {
+                questHudItem.transform.GetChild(0).GetComponent<Text>().text = QuestLog.questLog[i].GetDescription();
+               // questHudItem.transform.position
+            }
+        }
+        foreach (Quest item in QuestLog.questLog)
+        {
+            GameObject questHudItem = QuestHudContent.transform.Find(item.questID.ToString()).gameObject;
+           if (item.completed)
             {
                 if (ButtonsQuestsList.ContainsKey(item.questID))
                 {
@@ -36,17 +47,35 @@ public class QuestHud : MonoBehaviour
                     ButtonsQuestsList.Remove(item.questID);
                 }
             }
+            else
+            {
+                questHudItem.transform.GetChild(0).GetComponent<Text>().text = item.GetDescription();
+
+           }
+       }
     }
 
     private void UpdateQuestSList()
     {
-            foreach (Quest item in QuestLog.questLog)
+
+        if(QuestLog.questLog.Count > QuestHudContent.transform.childCount)
+        {
+            for (int i = 0; i < QuestLog.questLog.Count; i++)
             {
-                if (!ButtonsQuestsList.ContainsKey(item.questID))
-                {
-                    ButtonsQuestsList.Add(item.questID, Instantiate(buttonPrefab, QuestHudContent.transform));
-                    ButtonsQuestsList[item.questID].transform.SetSiblingIndex(1);
-                }
+                Button tempButton = Instantiate(buttonPrefab, QuestHudContent.transform) as Button;
+                tempButton.name = QuestLog.questLog[i].questID.ToString();
+                tempButton.transform.GetChild(0).GetComponent<Text>().text = QuestLog.questLog[i].GetDescription();
+                //Set button position
+                tempButton.transform.localPosition = new Vector3(107, (-100)+(-20 * i), 0);
             }
+            //foreach (Quest item in QuestLog.questLog)
+            //{
+            //    Button tempButton = Instantiate(buttonPrefab, QuestHudContent.transform) as Button;
+            //    tempButton.name = item.questID.ToString();
+            //    tempButton.transform.GetChild(0).GetComponent<Text>().text = item.GetDescription();
+            //    //Set button position
+            //}
+        }     
+        
     }
 }

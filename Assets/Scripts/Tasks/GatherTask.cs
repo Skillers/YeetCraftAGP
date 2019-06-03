@@ -89,4 +89,15 @@ public class GatherTask : ITask
         string _ret = "(" + currentCount + "/" + countNeeded + ")";
         return _ret;
     }
+
+    public int TaskID()
+    {
+        return 2;
+    }
+
+    public Vector3 GoalPos()
+    {
+        Debug.LogWarning("Task has no position");
+        return Vector3.zero;
+    }
 }

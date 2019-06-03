@@ -1,8 +1,11 @@
-﻿public enum Goal
+﻿using UnityEngine;
+
+public enum Goal
 {
     Go,
     Gather
 }
+
 
 public interface ITask
 {
@@ -14,4 +17,8 @@ public interface ITask
     string TaskProgression();
     //main text for quest
     string TaskDescription();
+    //Get the task id, used for the main menu
+    int TaskID();
+
+    Vector3 GoalPos();
 }

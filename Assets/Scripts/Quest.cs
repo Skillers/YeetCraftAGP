@@ -5,13 +5,11 @@ using UnityEngine;
 public class Quest
 {
     private List<ITask> tasks = new List<ITask>();
-    
+
     public string questTitle;
     public int questID;
     int taskCounter;
     public bool completed;
-
-
 
     public Quest(List<ITask> _tasks, string _questTilte)
     {
@@ -20,8 +18,13 @@ public class Quest
         completed = false;
         taskCounter = 0;
         questID = QuestLog.GetNextQuestID();
-        
-        Debug.Log("Quest started: " + questTitle + "| 0/" + tasks.Count+" Steps |");
+
+        //Debug.Log("Quest started: " + questTitle + "| 0/" + tasks.Count + " Steps |");
+      
+    }
+
+    public void StartQuest()
+    {
         tasks[taskCounter].StartTask(this);
     }
 
@@ -43,9 +46,37 @@ public class Quest
 
         WorldData.changedTaskCompleted();
     }
+    
+    public string GetTitle()
+    {
+        return questTitle;
+    }
 
     public string GetDescription()
     {
         return questTitle + " (" + (taskCounter) + "/" + tasks.Count + ")";
+    }
+
+    public List<ITask> GetTasks
+    {
+        get
+        {
+            return tasks;
+        }
+    }
+
+    public void EditTitle(string _newTitle)
+    {
+        questTitle = _newTitle;
+    }
+
+    /// <summary>
+    /// Change the tasks
+    /// </summary>
+    /// <param name="_index"></param>
+    /// <param name="_task"></param>
+    public void SetTaskOn(int _index, ITask _task)
+    {
+        tasks[_index] = _task;
     }
 }

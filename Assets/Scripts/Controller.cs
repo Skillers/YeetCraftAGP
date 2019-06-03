@@ -19,15 +19,21 @@ public class Controller : MonoBehaviour
         Cursor.lockState = wantedMode;
         Cursor.visible = (CursorLockMode.Locked != wantedMode);
 
-        //Creates a test quest.
-        List<ITask> tasks = new List<ITask>();
-        tasks.Add(new GoToTask(new Vector3(5,0,5)));
-        tasks.Add(new GatherTask(10 , Block.BlockType.GRASS));
-        tasks.Add(new GatherTask(10, Block.BlockType.DIRT));
-        tasks.Add(new GatherTask(10, Block.BlockType.STONE));
-        QuestLog.questLog.Add(currentQuest = new Quest(tasks, "Gatherings of Basics"));
+        ////Creates a test quest.
+        //List<ITask> tasks = new List<ITask>();
+        //tasks.Add(new GoToTask(new Vector3(5,0,5)));
+        //tasks.Add(new GatherTask(10 , Block.BlockType.GRASS));
+        //tasks.Add(new GatherTask(10, Block.BlockType.DIRT));
+        //tasks.Add(new GatherTask(10, Block.BlockType.STONE));
+        //QuestLog.questLog.Add(currentQuest = new Quest(tasks, "Gatherings of Basics"));
 
-
+        //Get quest from the questholder
+        for (int i = 0; i < QuestHolder.Instance.quests.Count; i++)
+        {
+            Debug.Log(QuestHolder.Instance.quests[i].GetDescription());
+            QuestLog.questLog.Add(currentQuest = QuestHolder.Instance.quests[i]);
+            QuestHolder.Instance.quests[i].StartQuest();
+        }
     }
 
     // Update is called once per frame

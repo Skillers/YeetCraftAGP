@@ -19,8 +19,11 @@ public class Quest
         taskCounter = 0;
         questID = QuestLog.GetNextQuestID();
 
-        //Debug.Log("Quest started: " + questTitle + "| 0/" + tasks.Count + " Steps |");
+        Debug.Log("Quest started: " + questTitle + "| 0/" + tasks.Count + " Steps |");
+        WorldData.changedQuestStarted(this);
         StartQuest();
+
+
     }
 
     public void StartQuest()
@@ -39,6 +42,7 @@ public class Quest
         else
         {
             Debug.Log("Quest Complete: " + questTitle + "| " + tasks.Count + "/" + tasks.Count + " Steps |");
+            WorldData.changedQuestCompleted(this);
             completed = true;
         }
 

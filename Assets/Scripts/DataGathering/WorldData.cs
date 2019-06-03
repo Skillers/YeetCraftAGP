@@ -39,6 +39,12 @@ public class WorldData : MonoBehaviour
     public delegate void ChangedTaskCompletedEvent();
     public static event ChangedTaskCompletedEvent changedTaskCompletedEvent;
 
+    public delegate void ChangeQuestCompletedEvent(Quest completedQuest);
+    public static event ChangeQuestCompletedEvent changedQuestCompletedEvent;
+
+    public delegate void ChangeQuestStartedEvent(Quest startedQuest);
+    public static event ChangeQuestStartedEvent changedQuestStartedEvent;
+
     //Event for block counter
     public static void changeMineCount()
     {
@@ -116,6 +122,22 @@ public class WorldData : MonoBehaviour
         if (changedTaskCompletedEvent != null)
         {
             changedTaskCompletedEvent();
+        }
+    }
+
+    public static void changedQuestCompleted(Quest completedQuest)
+    {
+        if (changedQuestCompletedEvent != null)
+        {
+            changedQuestCompletedEvent(completedQuest);
+        }
+    }
+
+    public static void changedQuestStarted(Quest startedQuest)
+    {
+        if (changedQuestStartedEvent != null)
+        {
+            changedQuestStartedEvent(startedQuest);
         }
     }
 }

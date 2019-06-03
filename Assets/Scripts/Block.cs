@@ -79,7 +79,10 @@ public class Block
 
     public bool BuildBlock(BlockType b)
     {
-
+        if (Cursor.lockState != CursorLockMode.Locked)
+        {
+            return false;
+        }
         SetType(b);
         owner.Redraw();
 
@@ -93,6 +96,11 @@ public class Block
 
     public bool HitBlock()
     {
+        if (Cursor.lockState != CursorLockMode.Locked)
+        {
+            return false;
+        }
+            
         if (currentHealth == -1)
         {
             return false;

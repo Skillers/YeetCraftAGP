@@ -13,17 +13,23 @@ public class Controller : MonoBehaviour
     public Quest currentQuest;
 
     public CursorLockMode wantedMode;
+
+    public GameObject questHud;
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = wantedMode;
         Cursor.visible = (CursorLockMode.Locked != wantedMode);
 
+        
+
         foreach (Quest quest in QuestHolder.Instance.quests)
         {
             quest.StartQuest();
             QuestLog.questLog.Add(quest);
         }
+
+
     }
 
     // Update is called once per frame
@@ -31,9 +37,24 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            wantedMode = CursorLockMode.Confined;
-            Cursor.lockState = wantedMode;
-            Cursor.visible = (CursorLockMode.Locked != wantedMode);
+            if (wantedMode == CursorLockMode.Locked)
+            {
+                wantedMode = CursorLockMode.Confined;
+                Cursor.lockState = wantedMode;
+                Cursor.visible = true;
+
+                //enable quest menu
+                //dissable mining
+            }
+            else
+            {
+                wantedMode = CursorLockMode.Locked;
+                Cursor.lockState = wantedMode;
+                Cursor.visible = false;
+
+                //diable quest menu
+
+            }
         }
 
         if (Input.GetKeyDown("space"))

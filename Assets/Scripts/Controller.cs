@@ -19,22 +19,10 @@ public class Controller : MonoBehaviour
         Cursor.lockState = wantedMode;
         Cursor.visible = (CursorLockMode.Locked != wantedMode);
 
-        ////Creates a test quest.
-        //List<ITask> tasks = new List<ITask>();
-        //tasks.Add(new GoToTask(new Vector3(5,0,5)));
-        //tasks.Add(new GatherTask(10 , Block.BlockType.GRASS));
-        //tasks.Add(new GatherTask(10, Block.BlockType.DIRT));
-        //tasks.Add(new GatherTask(10, Block.BlockType.STONE));
-        //QuestLog.questLog.Add(currentQuest = new Quest(tasks, "Gatherings of Basics"));
-
-        //for (int i = 0; i < QuestHolder.Instance.quests.Count; i++)
-        //{
-        //    QuestHolder.Instance.quests[i].StartQuest();
-        //}
-
         foreach (Quest quest in QuestHolder.Instance.quests)
         {
             quest.StartQuest();
+            QuestLog.questLog.Add(quest);
         }
     }
 

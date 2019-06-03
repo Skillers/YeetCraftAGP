@@ -19,7 +19,6 @@ public class QuestHud : MonoBehaviour
         WorldData.changedQuestStartedEvent += UpdateQuestSList;
     }
 
-
     private void UpdateTasksQuestList()
     {
         for (int i = 0; i < QuestLog.questLog.Count; i++)
@@ -27,55 +26,29 @@ public class QuestHud : MonoBehaviour
             GameObject questHudItem = QuestHudContent.transform.Find(QuestLog.questLog[i].questID.ToString()).gameObject;
             if (QuestLog.questLog[i].completed)
             {
-                questHudItem.transform.GetChild(0).GetComponent<Text>().text = QuestLog.questLog[i].questTitle + " | DONE |";
+                questHudItem.transform.GetChild(0).GetComponent<Text>().text = QuestLog.questLog[i].questTitle;
             }
             else
             {
                 questHudItem.transform.GetChild(0).GetComponent<Text>().text = QuestLog.questLog[i].GetDescription();
-               // questHudItem.transform.position
             }
         }
-        foreach (Quest item in QuestLog.questLog)
-        {
-            GameObject questHudItem = QuestHudContent.transform.Find(item.questID.ToString()).gameObject;
-           if (item.completed)
-            {
-                if (ButtonsQuestsList.ContainsKey(item.questID))
-                {
-                    ButtonsQuestsListCompleted.Add(item.questID, ButtonsQuestsList[item.questID]);
-                    ButtonsQuestsListCompleted[item.questID].transform.SetSiblingIndex(QuestHudContent.transform.childCount - ButtonsQuestsListCompleted.Count);
-                    ButtonsQuestsList.Remove(item.questID);
-                }
-            }
-            else
-            {
-                questHudItem.transform.GetChild(0).GetComponent<Text>().text = item.GetDescription();
-
-           }
-       }
     }
 
-    private void UpdateQuestSList()
+    private void UpdateQuestCList(Quest completedQuest)
     {
-
-        if(QuestLog.questLog.Count > QuestHudContent.transform.childCount)
-        {
-            for (int i = 0; i < QuestLog.questLog.Count; i++)
-            {
-                Button tempButton = Instantiate(buttonPrefab, QuestHudContent.transform) as Button;
-                tempButton.name = QuestLog.questLog[i].questID.ToString();
-                tempButton.transform.GetChild(0).GetComponent<Text>().text = QuestLog.questLog[i].GetDescription();
-                //Set button position
-                tempButton.transform.localPosition = new Vector3(107, (-100)+(-20 * i), 0);
-            }
-            //foreach (Quest item in QuestLog.questLog)
-            //{
-            //    Button tempButton = Instantiate(buttonPrefab, QuestHudContent.transform) as Button;
-            //    tempButton.name = item.questID.ToString();
-            //    tempButton.transform.GetChild(0).GetComponent<Text>().text = item.GetDescription();
-            //    //Set button position
-            //}
-        }     
-        
+        ButtonsQuestsListCompleted.Add(completedQuest.questID, ButtonsQuestsList[completedQuest.questID]);
+        ButtonsQuestsListCompleted[completedQuest.questID].transform.SetSiblingIndex(QuestHudContent.transform.childCount);
+        ButtonsQuestsList.Remove(completedQuest.questID);
     }
+
+    private void UpdateQuestSList(Quest startedQuest)
+    {                
+                Button tempButton = Instantiate(buttonPrefab, QuestHudContent.transform) as Button;
+                ButtonsQuestsList.Add(startedQuest.questID, tempButton);
+                tempButton.transform.SetSiblingIndex(1);
+                tempButton.name = startedQuest.questID.ToString();
+                tempButton.transform.GetChild(0).GetComponent<Text>().text = startedQuest.GetDescription();     
+    }
+
 }

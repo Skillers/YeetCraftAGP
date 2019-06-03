@@ -8,42 +8,45 @@ public class QuestHud : MonoBehaviour
 {
     public GameObject QuestHudContent;
     public Button buttonPrefab;
+    public SortedList<int, Button> ButtonsQuestsList = new SortedList<int, Button>();
+    public SortedList<int, Button> ButtonsQuestsListCompleted = new SortedList<int, Button>();
+
     // Start is called before the first frame update
     void Start()
     {
-        WorldData.changedTaskCompletedEvent += UpdateQuestList;
+        WorldData.changedTaskCompletedEvent += UpdateTasksQuestList;
+        WorldData.changedQuestCompletedEvent += UpdateQuestCList;
+        WorldData.changedQuestStartedEvent += UpdateQuestSList;
     }
 
-    private void UpdateQuestList()
-    {
-        foreach (Quest item in QuestLog.questLog)
-        {
-            GameObject questHudItem = QuestHudContent.transform.Find(item.questID.ToString()).gameObject;
-            if (item.completed)
-            {
-                questHudItem.transform.GetChild(0).GetComponent<Text>().text = item.questTitle + " | DONE |";
-            }
-            else
-            {
-                questHudItem.transform.GetChild(0).GetComponent<Text>().text = item.GetDescription();
 
-            }
-        }
+    private void UpdateTasksQuestList()
+    {
+
     }
 
-    // Update is called once per frame
-    void Update()
+    private void UpdateQuestCList()
     {
+            foreach (Quest item in QuestLog.questCompletedLog)
+            {
+                if (ButtonsQuestsList.ContainsKey(item.questID))
+                {
+                    ButtonsQuestsListCompleted.Add(item.questID, ButtonsQuestsList[item.questID]);
+                    ButtonsQuestsListCompleted[item.questID].transform.SetSiblingIndex(QuestHudContent.transform.childCount - ButtonsQuestsListCompleted.Count);
+                    ButtonsQuestsList.Remove(item.questID);
+                }
+            }
+    }
 
-        if(QuestLog.questLog.Count > QuestHudContent.transform.childCount)
-        {
+    private void UpdateQuestSList()
+    {
             foreach (Quest item in QuestLog.questLog)
             {
-                Button tempButton = Instantiate(buttonPrefab, QuestHudContent.transform) as Button;
-                tempButton.name = item.questID.ToString();
-                tempButton.transform.GetChild(0).GetComponent<Text>().text = item.GetDescription();
+                if (!ButtonsQuestsList.ContainsKey(item.questID))
+                {
+                    ButtonsQuestsList.Add(item.questID, Instantiate(buttonPrefab, QuestHudContent.transform));
+                    ButtonsQuestsList[item.questID].transform.SetSiblingIndex(1);
+                }
             }
-        }     
-        
     }
 }

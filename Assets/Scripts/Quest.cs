@@ -36,6 +36,8 @@ public class Quest
         else
         {
             Debug.Log("Quest Complete: " + questTitle + "| " + tasks.Count + "/" + tasks.Count + " Steps |");
+            WorldData.changedQuestCompleted();
+            QuestLog.QuestGotCompleted(this);
             completed = true;
         }
 

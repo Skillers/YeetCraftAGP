@@ -53,6 +53,8 @@ public class BlockInteraction : MonoBehaviour
                 {
 
                     update = b.BuildBlock(buildtype);
+
+                    //Update listener
                 }
 
                 if (update)

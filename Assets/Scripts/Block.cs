@@ -83,6 +83,11 @@ public class Block
         SetType(b);
         owner.Redraw();
 
+        WorldData.changePlacedCount();
+        WorldData.changeLastPlacedBlock(b);
+
+        Debug.Log("Blck plaved " + b.ToString());
+
         return true;
     }
 

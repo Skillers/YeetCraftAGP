@@ -20,7 +20,7 @@ public class Quest
         questID = QuestLog.GetNextQuestID();
 
         //Debug.Log("Quest started: " + questTitle + "| 0/" + tasks.Count + " Steps |");
-      
+        StartQuest();
     }
 
     public void StartQuest()

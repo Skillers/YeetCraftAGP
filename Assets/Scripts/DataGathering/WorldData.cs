@@ -6,7 +6,9 @@ public class WorldData : MonoBehaviour
 {
     //Tracked data
     public static int minedBlockCount;
+    public static int placedBlockCount;
     public static Block.BlockType lastMinedblockType;
+    public static Block.BlockType lastPlacedblockType;
 
     public static Queue<Vector3> lastShortTimePositions = new Queue<Vector3>();
     public static Queue<Vector3> lastLongTimePositions = new Queue<Vector3>();
@@ -16,8 +18,14 @@ public class WorldData : MonoBehaviour
     public delegate void ChangedMinedCountEvent();
     public static event ChangedMinedCountEvent changedMinedCount;
 
+    public delegate void ChangedPlacedCountEvent();
+    public static event ChangedPlacedCountEvent changedPlacedCount;
+
     public delegate void ChangedLastMinedEvent(Block.BlockType blockType);
     public static event ChangedLastMinedEvent changedLastMinedBlockEvent;
+
+    public delegate void ChangedLastPlacedEvent(Block.BlockType blockType);
+    public static event ChangedLastPlacedEvent changedLastPlacedBlockEvent;
 
     public delegate void ChangedPlayerPositionShortEvent(Vector3 position);
     public static event ChangedPlayerPositionShortEvent changedPlayerPositionShortEvent;
@@ -41,6 +49,15 @@ public class WorldData : MonoBehaviour
         }
     }
 
+    public static void changePlacedCount()
+    {
+        placedBlockCount++;
+        if (changedPlacedCount != null)
+        {
+            changedPlacedCount();
+        }
+    }
+
     //Event for Last mined block type
     public static void changeLastMinedBlock(Block.BlockType blockType)
     {
@@ -48,6 +65,16 @@ public class WorldData : MonoBehaviour
         if (changedLastMinedBlockEvent != null)
         {
             changedLastMinedBlockEvent(blockType);
+        }
+    }
+
+    //Event for Last mined block type
+    public static void changeLastPlacedBlock(Block.BlockType blockType)
+    {
+        lastPlacedblockType = blockType;
+        if (changedLastPlacedBlockEvent != null)
+        {
+            changedLastPlacedBlockEvent(blockType);
         }
     }
 

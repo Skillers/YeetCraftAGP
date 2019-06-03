@@ -18,16 +18,13 @@ public class Quest
         completed = false;
         taskCounter = 0;
         questID = QuestLog.GetNextQuestID();
-
-        Debug.Log("Quest started: " + questTitle + "| 0/" + tasks.Count + " Steps |");
-        WorldData.changedQuestStarted(this);
-        StartQuest();
-
-
+       
     }
 
     public void StartQuest()
     {
+        Debug.Log("Quest started: " + questTitle + "| 0/" + tasks.Count + " Steps |");
+        WorldData.changedQuestStarted(this);
         tasks[taskCounter].StartTask(this);
     }
 

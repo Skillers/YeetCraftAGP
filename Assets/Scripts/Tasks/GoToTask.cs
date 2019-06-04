@@ -38,20 +38,28 @@ public class GoToTask : ITask
         {
             if (Postion.x <= Location.x + 1 && Postion.x >= Location.x - 1)
             {
-                if (Postion.z <= Location.y + 1 && Postion.z >= Location.y - 1)
+                if (Postion.y <= Location.y + 1 && Postion.y >= Location.y - 1)
                 {
-                    Debug.Log("Task Complete: Go to: : X" + Location.x + ", Y" + Location.y);
-                    completed = true;
-                    UpdateQuest();
+                    if (Postion.z <= Location.z + 1 && Postion.z >= Location.z - 1)
+                    {
+                        Debug.Log("Task Complete: Go to: X" + Location.x + ", Y" + Location.y + ", Z" + Location.z);
+                        completed = true;
+                        UpdateQuest();
+                    }
+                    else
+                    {
+                        Debug.Log("Task status: Go to: X" + Location.x + ", Y" + Location.y + ", Z" + Location.z + " | Current Location: " + TaskProgression() + " |");
+                    }
                 }
                 else
                 {
-                    Debug.Log("Task status: Go to: : X" + Location.x + ", Y" + Location.y + " | Current Location: " + TaskProgression() + " |");
+                        Debug.Log("Task status: Go to: X" + Location.x + ", Y" + Location.y + ", Z" + Location.z + " | Current Location: " + TaskProgression() + " |");
                 }
+
             }
             else
             {
-                Debug.Log("Task status: Go to: : X" + Location.x + ", Y" + Location.y + " | Current Location: " + TaskProgression() + " |");
+                Debug.Log("Task status: Go to: X" + Location.x + ", Y" + Location.y + ", Z" + Location.z + " | Current Location: " + TaskProgression() + " |");
             }
         }
     }
@@ -66,12 +74,19 @@ public class GoToTask : ITask
     //Task Description is used in quest Log
     public string TaskDescription()
     {
-        return "Go to " + Location;
+        if (completed) {
+            return "Go to " + Location + " / Done";
+
+        } else
+        {
+            return "Go to " + Location + " / " + WorldData.lastPlayerPosition;
+        }
+        
     }
 
     public string TaskProgression()
     { 
-        string _ret = "X"+ WorldData.lastPlayerPosition.x + ", Y" + WorldData.lastPlayerPosition.z;
+        string _ret = "X"+ WorldData.lastPlayerPosition.x + ", Y" + WorldData.lastPlayerPosition.y + ", Z" + WorldData.lastPlayerPosition.z;
         return _ret;
     }
 

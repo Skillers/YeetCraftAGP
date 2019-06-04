@@ -18,6 +18,8 @@ public class BlockInteraction : MonoBehaviour
             buildtype = Block.BlockType.STONE;
         if (Input.GetKeyDown("3"))
             buildtype = Block.BlockType.DIAMOND;
+        if (Input.GetKeyDown("4"))
+            buildtype = Block.BlockType.DIRT;
 
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
         {
@@ -53,6 +55,8 @@ public class BlockInteraction : MonoBehaviour
                 {
 
                     update = b.BuildBlock(buildtype);
+
+                    //Update listener
                 }
 
                 if (update)

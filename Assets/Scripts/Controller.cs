@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
+    public GameObject QuestLogHud;
+    public GameObject QuestDiscriptionHud;
+
     public float speedH = 2.0f;
     public float speedV = 2.0f;
 
@@ -13,19 +16,21 @@ public class Controller : MonoBehaviour
     public Quest currentQuest;
 
     public CursorLockMode wantedMode;
+
+    public GameObject questHud;
     // Start is called before the first frame update
     void Start()
     {
         Cursor.lockState = wantedMode;
         Cursor.visible = (CursorLockMode.Locked != wantedMode);
 
-        //Creates a test quest.
-        List<ITask> tasks = new List<ITask>();
-        tasks.Add(new GoToTask(new Vector3(5,0,5)));
-        tasks.Add(new GatherTask(10 , Block.BlockType.GRASS));
-        tasks.Add(new GatherTask(10, Block.BlockType.DIRT));
-        tasks.Add(new GatherTask(10, Block.BlockType.STONE));
-        QuestLog.questLog.Add(currentQuest = new Quest(tasks, "Gatherings of Basics"));
+        
+
+        foreach (Quest quest in QuestHolder.Instance.quests)
+        {
+            quest.StartQuest();
+            QuestLog.questLog.Add(quest);
+        }
 
 
     }
@@ -35,9 +40,27 @@ public class Controller : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            wantedMode = CursorLockMode.Confined;
-            Cursor.lockState = wantedMode;
-            Cursor.visible = (CursorLockMode.Locked != wantedMode);
+            if (wantedMode == CursorLockMode.Locked)
+            {
+                QuestLogHud.SetActive(true);
+                wantedMode = CursorLockMode.Confined;
+                Cursor.lockState = wantedMode;
+                Cursor.visible = true;
+
+                //enable quest menu
+                //dissable mining
+            }
+            else
+            {
+                QuestLogHud.SetActive(false);
+                QuestDiscriptionHud.SetActive(false);
+                wantedMode = CursorLockMode.Locked;
+                Cursor.lockState = wantedMode;
+                Cursor.visible = false;
+
+                //diable quest menu
+
+            }
         }
 
         if (Input.GetKeyDown("space"))

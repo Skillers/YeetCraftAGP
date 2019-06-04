@@ -18,8 +18,13 @@ public class Quest
         completed = false;
         taskCounter = 0;
         questID = QuestLog.GetNextQuestID();
+       
+    }
 
-        //Debug.Log("Quest started: " + questTitle + "| 0/" + tasks.Count + " Steps |");
+    public void StartQuest()
+    {
+        Debug.Log("Quest started: " + questTitle + "| 0/" + tasks.Count + " Steps |");
+        WorldData.changedQuestStarted(this);
         tasks[taskCounter].StartTask(this);
     }
 
@@ -38,6 +43,10 @@ public class Quest
         }
 
         WorldData.changedTaskCompleted();
+        if (completed)
+        {
+            WorldData.changedQuestCompleted(this);
+        }
     }
     
     public string GetTitle()
@@ -50,6 +59,20 @@ public class Quest
         return questTitle + " (" + (taskCounter) + "/" + tasks.Count + ")";
     }
 
+   public string GetTasksCount()
+    {
+        return " (" + (taskCounter) + "/" + tasks.Count + ")";
+    }
+
+    public string GetTasksDisc()
+    {
+        string temp = "";
+        for (int i = 0; i < tasks.Count; i++)
+        {
+            temp += (i+1)+": " + tasks[i].TaskDescription() + "\n";
+        }
+        return temp;
+    }
     public List<ITask> GetTasks
     {
         get
@@ -63,6 +86,11 @@ public class Quest
         questTitle = _newTitle;
     }
 
+    /// <summary>
+    /// Change the tasks
+    /// </summary>
+    /// <param name="_index"></param>
+    /// <param name="_task"></param>
     public void SetTaskOn(int _index, ITask _task)
     {
         tasks[_index] = _task;

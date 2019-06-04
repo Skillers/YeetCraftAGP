@@ -17,7 +17,7 @@ public class Block
 
     public BlockType health;
     int currentHealth;
-    int[] blockHealthMax = { 3, 3, 4, -1, 4, 4, 0, 0, 0, 0, 0, 0 };
+    int[] blockHealthMax = { 3, 3, 4, 4, 4, 4, 0, 0, 0, 0, 0, 0 };
 
     Vector2[,] blockUVs = { 
 		/*GRASS TOP*/		{new Vector2( 0.125f, 0.375f ), new Vector2( 0.1875f, 0.375f),
@@ -79,15 +79,28 @@ public class Block
 
     public bool BuildBlock(BlockType b)
     {
-
+        if (Cursor.lockState != CursorLockMode.Locked)
+        {
+            return false;
+        }
         SetType(b);
         owner.Redraw();
+
+        WorldData.changePlacedCount();
+        WorldData.changeLastPlacedBlock(b);
+
+        Debug.Log("Blck plaved " + b.ToString());
 
         return true;
     }
 
     public bool HitBlock()
     {
+        if (Cursor.lockState != CursorLockMode.Locked)
+        {
+            return false;
+        }
+            
         if (currentHealth == -1)
         {
             return false;

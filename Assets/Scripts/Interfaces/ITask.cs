@@ -3,7 +3,8 @@
 public enum Goal
 {
     Go,
-    Gather
+    Gather,
+    Build
 }
 
 

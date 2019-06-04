@@ -10,8 +10,18 @@ public class QuestHolder : MonoBehaviour
     List<ITask> questTasks1 = new List<ITask>();
     List<ITask> questTasks2 = new List<ITask>();
     List<ITask> questTasks3 = new List<ITask>();
+
+    public int AmountOfQuests;
+
+    public static QuestHolder Instance;
+
     private void Awake()
     {
+        if (Instance == null)
+        {
+            Instance = this;
+        }
+
         questTasks.Add(new GoToTask(new Vector3(12, 04, -470)));
         questTasks.Add(new GatherTask(69, Block.BlockType.CRACK1));
 
@@ -30,6 +40,11 @@ public class QuestHolder : MonoBehaviour
         quests.Add(new Quest(questTasks1, "Nog meer coole dingen"));
         quests.Add(new Quest(questTasks2, "Joinkers"));
         quests.Add(new Quest(questTasks3, "Yeetcraft"));
+
+        DontDestroyOnLoad(this);
+
+
+        AmountOfQuests = quests.Count;
     }
 
   

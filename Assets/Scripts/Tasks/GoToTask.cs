@@ -66,7 +66,14 @@ public class GoToTask : ITask
     //Task Description is used in quest Log
     public string TaskDescription()
     {
-        return "Go to " + Location;
+        if (completed) {
+            return "Go to " + Location + " / Done";
+
+        } else
+        {
+            return "Go to " + Location + " / " + WorldData.lastPlayerPosition;
+        }
+        
     }
 
     public string TaskProgression()

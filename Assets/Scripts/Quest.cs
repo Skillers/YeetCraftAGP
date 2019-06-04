@@ -39,11 +39,14 @@ public class Quest
         else
         {
             Debug.Log("Quest Complete: " + questTitle + "| " + tasks.Count + "/" + tasks.Count + " Steps |");
-            WorldData.changedQuestCompleted(this);
             completed = true;
         }
 
         WorldData.changedTaskCompleted();
+        if (completed)
+        {
+            WorldData.changedQuestCompleted(this);
+        }
     }
     
     public string GetTitle()
@@ -56,6 +59,20 @@ public class Quest
         return questTitle + " (" + (taskCounter) + "/" + tasks.Count + ")";
     }
 
+   public string GetTasksCount()
+    {
+        return " (" + (taskCounter) + "/" + tasks.Count + ")";
+    }
+
+    public string GetTasksDisc()
+    {
+        string temp = "";
+        for (int i = 0; i < tasks.Count; i++)
+        {
+            temp += (i+1)+":" + tasks[i].TaskDescription() + "\n";
+        }
+        return temp;
+    }
     public List<ITask> GetTasks
     {
         get

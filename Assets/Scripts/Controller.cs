@@ -4,6 +4,9 @@ using UnityEngine;
 
 public class Controller : MonoBehaviour
 {
+    public GameObject QuestLogHud;
+    public GameObject QuestDiscriptionHud;
+
     public float speedH = 2.0f;
     public float speedV = 2.0f;
 
@@ -39,6 +42,7 @@ public class Controller : MonoBehaviour
         {
             if (wantedMode == CursorLockMode.Locked)
             {
+                QuestLogHud.SetActive(true);
                 wantedMode = CursorLockMode.Confined;
                 Cursor.lockState = wantedMode;
                 Cursor.visible = true;
@@ -48,6 +52,8 @@ public class Controller : MonoBehaviour
             }
             else
             {
+                QuestLogHud.SetActive(false);
+                QuestDiscriptionHud.SetActive(false);
                 wantedMode = CursorLockMode.Locked;
                 Cursor.lockState = wantedMode;
                 Cursor.visible = false;

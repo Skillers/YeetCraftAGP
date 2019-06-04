@@ -130,7 +130,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &29864668
 RectTransform:
   m_ObjectHideFlags: 0
@@ -658,8 +658,8 @@ RectTransform:
   m_Father: {fileID: 891402800}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 0.22333336}
+  m_AnchorMax: {x: 1, y: 1}
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 20, y: 20}
   m_Pivot: {x: 0.5, y: 0.5}
@@ -733,10 +733,10 @@ RectTransform:
   m_Father: {fileID: 1263401081}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 110, y: -12.5}
+  m_SizeDelta: {x: 220, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1024437939
 MonoBehaviour:
@@ -836,6 +836,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01540a91dbc728f4496c1cb2ee70143f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  QuestLogHud: {fileID: 29864667}
+  QuestDiscriptionHud: {fileID: 1816820907}
   speedH: 2
   speedV: 2
   wantedMode: 1
@@ -1070,10 +1072,10 @@ RectTransform:
   m_Father: {fileID: 1263401081}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_AnchorMin: {x: 0, y: 0}
-  m_AnchorMax: {x: 0, y: 0}
-  m_AnchoredPosition: {x: 0, y: 0}
-  m_SizeDelta: {x: 0, y: 0}
+  m_AnchorMin: {x: 0, y: 1}
+  m_AnchorMax: {x: 0, y: 1}
+  m_AnchoredPosition: {x: 110, y: -37.5}
+  m_SizeDelta: {x: 220, y: 25}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1568372460
 MonoBehaviour:

@@ -69,7 +69,7 @@ public class Quest
         string temp = "";
         for (int i = 0; i < tasks.Count; i++)
         {
-            temp += (i+1)+":" + tasks[i].TaskDescription() + "\n";
+            temp += (i+1)+": " + tasks[i].TaskDescription() + "\n";
         }
         return temp;
     }

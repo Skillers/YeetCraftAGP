@@ -59,22 +59,22 @@ public class CurrentQuests : MonoBehaviour
         List<ITask> _questTasks = new List<ITask>();
         for (int i = 0; i < amountOfTasks; i++)
         {
-            string blockTypeName = System.Enum.GetName(typeof(Block.BlockType), Random.Range(0, blockTypeCount));
+            string blockTypeName = System.Enum.GetName(typeof(Block.BlockType), Random.Range(0, blockTypeCount - 6));
             Block.BlockType blockToMine = (Block.BlockType)System.Enum.Parse(typeof(Block.BlockType), blockTypeName);
             int questType = Random.Range(0, 2);
             if (questType == 0)
             {
 
-                _questTasks.Add(new GoToTask(new Vector3(Random.Range(-120,120), Random.Range(-120, 0), Random.Range(-120, 120))));
+                _questTasks.Add(new GoToTask(new Vector3(Random.Range(-120, 120), Random.Range(-120, 0), Random.Range(-120, 120))));
             }
             else
             {
                 _questTasks.Add(new GatherTask(Random.Range(10, 50), blockToMine));
             }
-            
+
         }
-        
-        
+
+
         questHolder.quests.Add(new Quest(_questTasks, ("Quest " + (questHolder.quests.Count + 1).ToString())));
 
         UpdateList();

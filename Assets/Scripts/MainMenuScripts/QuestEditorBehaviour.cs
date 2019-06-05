@@ -83,7 +83,7 @@ public class QuestEditorBehaviour : MonoBehaviour
     {
         currentTaskEditor.SetActive(true);
         //Enable al type of task editable things
-        currentTaskTitleText.text = currentTaskIndex.ToString() + " - " + _task.TaskDescription();
+        currentTaskTitleText.text = (currentTaskIndex+1) + " - " + _task.TaskDescriptionBuilder();
 
         //Keep track of current task
         currentEditedTask = _task;

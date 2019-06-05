@@ -75,13 +75,17 @@ public class GoToTask : ITask
     public string TaskDescription()
     {
         if (completed) {
-            return "Go to " + Location + " / Done";
+            return "Go to: " + Location + " / Done";
 
         } else
         {
-            return "Go to " + Location + " / " + WorldData.lastPlayerPosition;
-        }
-        
+            return "Go to: " + Location + " / " + WorldData.lastPlayerPosition;
+        }   
+    }
+
+    public string TaskDescriptionBuilder()
+    {
+        return "Go to: " + Location;
     }
 
     public string TaskProgression()

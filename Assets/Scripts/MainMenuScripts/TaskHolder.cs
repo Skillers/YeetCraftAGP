@@ -14,7 +14,7 @@ public class TaskHolder : MonoBehaviour
     {
         editor = _editor;
         currentTask = _task;
-        taskName.text = _task.TaskDescription();
+        taskName.text = _task.TaskDescriptionBuilder();
         taskCount = _taskCount;
     }
 
@@ -28,7 +28,7 @@ public class TaskHolder : MonoBehaviour
         editor.currentTaskIndex = taskCount;
         editor.SetTaskEditor(currentTask);
 
-        editor.CurrentSelectedIndexText.text = editor.currentTaskIndex.ToString();
+        editor.CurrentSelectedIndexText.text = (editor.currentTaskIndex + 1) + "";
     }
     
 }

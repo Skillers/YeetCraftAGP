@@ -84,7 +84,16 @@ public class GatherTask : ITask
         return _ret;
     }
 
-    public string TaskProgression()
+    public string TaskDescriptionBuilder()
+    {
+        string _ret = "";
+        _ret += "Gather: ";
+        _ret += blockToMine.ToString().ToLower();
+        _ret += " (" + countNeeded + ")";
+        return _ret;
+    }
+
+        public string TaskProgression()
     {
         string _ret = "(" + currentCount + "/" + countNeeded + ")";
         return _ret;

@@ -18,6 +18,8 @@ public interface ITask
     string TaskProgression();
     //main text for quest
     string TaskDescription();
+    //text for builder
+    string TaskDescriptionBuilder();
     //Get the task id, used for the main menu
     int TaskID();
 

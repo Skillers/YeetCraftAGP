@@ -74,7 +74,14 @@ public class BuildTask : ITask
         _ret += TaskProgression();
         return _ret;
     }
-
+    public string TaskDescriptionBuilder()
+    {
+        string _ret = "";
+        _ret += "Build: ";
+        _ret += blockToPlace.ToString().ToLower();
+        _ret += " (" + countNeeded + ")";
+        return _ret;
+    }
     public int TaskID()
     {
         return 3;
